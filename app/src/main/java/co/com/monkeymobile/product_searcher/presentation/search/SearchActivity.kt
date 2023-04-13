@@ -68,21 +68,29 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
                 this,
                 android.R.layout.simple_spinner_item,
                 sites.map { it.name }
-            )
+            ).apply {
+                setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            }
 
-            spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
             binding.siteSelectorSpinner.adapter = spinnerAdapter
             binding.siteSelectorSpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
                         val site = sites[position]
                         dispatchEvent(SearchViewEvent.SiteSelected(site))
                     }
 
-                    override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        val site = sites[0]
+                        dispatchEvent(SearchViewEvent.SiteSelected(site))
+                    }
                 }
-
         }
 
         with(binding) {

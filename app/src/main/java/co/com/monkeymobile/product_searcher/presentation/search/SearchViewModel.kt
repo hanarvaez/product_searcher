@@ -1,6 +1,8 @@
 package co.com.monkeymobile.product_searcher.presentation.search
 
+import androidx.lifecycle.MutableLiveData
 import co.com.monkeymobile.product_searcher.di.DefaultDispatcher
+import co.com.monkeymobile.product_searcher.domain.model.Site
 import co.com.monkeymobile.product_searcher.domain.use_case.GetSiteListUseCase
 import co.com.monkeymobile.product_searcher.domain.use_case.NoParams
 import co.com.monkeymobile.product_searcher.domain.use_case.Result
@@ -15,12 +17,14 @@ class SearchViewModel @Inject constructor(
     @DefaultDispatcher coroutineDispatcher: CoroutineDispatcher
 ) : BaseViewModel<SearchViewState, SearchViewEvent>(coroutineDispatcher) {
 
+    private val selectedSite = MutableLiveData<Site>()
+
     override fun getInitialState() = SearchViewState.Initial
 
     override suspend fun processEvent(event: SearchViewEvent) {
         when (event) {
             SearchViewEvent.Initialize -> initializeEvent()
-            is SearchViewEvent.SiteSelected -> Unit
+            is SearchViewEvent.SiteSelected -> onSiteSelectedEvent(event)
             is SearchViewEvent.Search -> Unit
         }
     }
@@ -39,5 +43,7 @@ class SearchViewModel @Inject constructor(
             }
         }
     }
+
+    private fun onSiteSelectedEvent(event: SearchViewEvent.SiteSelected) = selectedSite.postValue(event.site)
 
 }
