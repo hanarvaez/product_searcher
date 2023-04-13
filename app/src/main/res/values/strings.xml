@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">product_searcher</string>
+    <string name="site_selector_label_text">1. Please, select where you want to find a product</string>
+    <string name="search_input_label_text">2. Please, type below the product you want to find</string>
+    <string name="search_product_text">Search Product</string>
+    <string name="internet_error_text">Ups! Seems something went wrong.\nPlease check your internet connection and try again</string>
 </resources>

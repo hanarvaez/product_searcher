@@ -6,4 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".presentation.search.SearchActivity">
 
+    <!-- Progress -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/dimen_200"
+        android:layout_height="@dimen/dimen_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- End Progress -->
+
+    <!-- Error -->
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:gravity="center"
+        android:text="@string/internet_error_text"
+        android:textSize="25sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- End Error -->
+
+    <!-- Form -->
+    <TextView
+        android:id="@+id/siteSelectorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20"
+        android:text="@string/site_selector_label_text"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/siteSelectorSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/siteSelectorLabel"
+        app:layout_constraintStart_toStartOf="@+id/siteSelectorLabel"
+        app:layout_constraintTop_toBottomOf="@+id/siteSelectorLabel" />
+
+    <TextView
+        android:id="@+id/searchInputLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/search_input_label_text"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/siteSelectorSpinner"
+        app:layout_constraintStart_toStartOf="@+id/siteSelectorSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/siteSelectorSpinner" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/searchInputLabel"
+        app:layout_constraintStart_toStartOf="@+id/searchInputLabel"
+        app:layout_constraintTop_toBottomOf="@+id/searchInputLabel" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:text="@string/search_product_text"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/searchInput"
+        app:layout_constraintStart_toStartOf="@+id/searchInput"
+        app:layout_constraintTop_toBottomOf="@+id/searchInput" />
+    <!-- End Form -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
