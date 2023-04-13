@@ -32,6 +32,7 @@ class SiteRepositoryImpl @Inject constructor(
             localDataSource.saveSite(*siteEntities.toTypedArray())
 
             savedSites.addAll(siteEntities.map { it.toSite() })
+            savedSites.sortBy { it.name }
         }
 
         return savedSites.toList()
