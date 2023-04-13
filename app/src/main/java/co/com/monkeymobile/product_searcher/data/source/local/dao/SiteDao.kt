@@ -12,7 +12,7 @@ import co.com.monkeymobile.product_searcher.data.source.local.entities.SiteEntit
 interface SiteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserSite(vararg siteEntity: SiteEntity)
+    fun insertSite(vararg siteEntity: SiteEntity)
 
     @Query("SELECT * FROM $SITE_TABLE_NAME ORDER BY $SITE_NAME_COLUMN_NAME")
     fun getAllSites(): List<SiteEntity>

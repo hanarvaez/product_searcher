@@ -5,4 +5,6 @@ import co.com.monkeymobile.product_searcher.data.source.local.entities.SiteEntit
 interface SiteLocalDataSource {
 
     suspend fun fetchSitesList(): List<SiteEntity>
+
+    suspend fun saveSite(vararg siteEntity: SiteEntity)
 }

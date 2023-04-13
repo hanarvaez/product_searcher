@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SiteBackendResponse(
-    @SerializedName("default_currency_id") val defaultCurrencyId: String,
-    val id: String,
-    val name: String
+    @SerializedName("default_currency_id") val defaultCurrencyId: String?,
+    val id: String?,
+    val name: String?
 ) : Parcelable
