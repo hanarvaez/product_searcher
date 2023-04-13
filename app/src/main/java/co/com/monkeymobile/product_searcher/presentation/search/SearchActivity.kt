@@ -72,7 +72,6 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
                 setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             }
 
-
             binding.siteSelectorSpinner.adapter = spinnerAdapter
             binding.siteSelectorSpinner.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
