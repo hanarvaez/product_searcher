@@ -25,7 +25,7 @@ class SearchViewModel @Inject constructor(
         when (event) {
             SearchViewEvent.Initialize -> initializeEvent()
             is SearchViewEvent.SiteSelected -> onSiteSelectedEvent(event)
-            is SearchViewEvent.Search -> Unit
+            is SearchViewEvent.SearchClicked -> onSearchClicked(event)
         }
     }
 
@@ -44,6 +44,18 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun onSiteSelectedEvent(event: SearchViewEvent.SiteSelected) = selectedSite.postValue(event.site)
+    private fun onSiteSelectedEvent(event: SearchViewEvent.SiteSelected) =
+        selectedSite.postValue(event.site)
+
+    private fun onSearchClicked(event: SearchViewEvent.SearchClicked) {
+        val query = event.query
+        val siteId = selectedSite.value?.id
+
+        when {
+            query.isBlank() -> toastMessage.postValue(event.emptyQueryErrorMessage)
+            siteId.isNullOrBlank() -> toastMessage.postValue(event.noSiteSelectedErrorMessage)
+            else -> setState(SearchViewState.Search(siteId, query))
+        }
+    }
 
 }

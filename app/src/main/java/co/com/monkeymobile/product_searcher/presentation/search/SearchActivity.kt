@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
+import co.com.monkeymobile.product_searcher.R
 import co.com.monkeymobile.product_searcher.databinding.ActivitySearchBinding
 import co.com.monkeymobile.product_searcher.presentation.BaseActivity
+import co.com.monkeymobile.product_searcher.presentation.product_list.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +36,7 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
             SearchViewState.Initial -> buildInitialState()
             SearchViewState.Loading -> buildLoadingState()
             is SearchViewState.Content -> buildContentState(state)
+            is SearchViewState.Search -> buildSearchState(state)
         }
     }
 
@@ -90,6 +93,18 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
                         dispatchEvent(SearchViewEvent.SiteSelected(site))
                     }
                 }
+
+            binding.buttonSearch.setOnClickListener {
+                val query = binding.searchInput.text.toString()
+
+                dispatchEvent(
+                    SearchViewEvent.SearchClicked(
+                        query,
+                        getString(R.string.no_site_selected_error),
+                        getString(R.string.empty_query_error)
+                    )
+                )
+            }
         }
 
         with(binding) {
@@ -101,5 +116,12 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
             searchInput.visibility = isFormVisible
             buttonSearch.visibility = isFormVisible
         }
+    }
+
+    private fun buildSearchState(state: SearchViewState.Search) {
+        val siteId = state.siteId
+        val query = state.query
+
+        startActivity(ProductListActivity.getIntent(this, siteId, query))
     }
 }

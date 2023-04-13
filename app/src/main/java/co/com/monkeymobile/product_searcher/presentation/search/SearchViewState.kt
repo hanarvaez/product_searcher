@@ -19,4 +19,9 @@ sealed class SearchViewState : ViewState {
 
         override fun getName() = "SearchViewState.Content"
     }
+
+    class Search(val siteId: String, val query: String): SearchViewState() {
+
+        override fun getName() = "SearchViewState.Search"
+    }
 }
