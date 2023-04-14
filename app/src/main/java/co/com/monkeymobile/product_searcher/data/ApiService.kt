@@ -26,5 +26,5 @@ interface ApiService {
     suspend fun fetchProductList(
         @Path(ApiUrl.SITE_ID_PATH) siteId: String,
         @Query(ApiUrl.Q_QUERY) query: String
-    ): List<SearchBackendResponse>
+    ): SearchBackendResponse
 }

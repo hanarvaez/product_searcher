@@ -2,7 +2,9 @@ package co.com.monkeymobile.product_searcher.di
 
 import co.com.monkeymobile.product_searcher.data.source.local.SiteLocalDataSource
 import co.com.monkeymobile.product_searcher.data.source.local.impl.SiteLocalDataSourceImpl
+import co.com.monkeymobile.product_searcher.data.source.remote.ItemListRemoteDataSource
 import co.com.monkeymobile.product_searcher.data.source.remote.SiteRemoteDataSource
+import co.com.monkeymobile.product_searcher.data.source.remote.impl.ItemListRemoteDataSourceImpl
 import co.com.monkeymobile.product_searcher.data.source.remote.impl.SiteRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -18,4 +20,7 @@ abstract class DataSourceModule {
 
     @Binds
     abstract fun provideSiteLocalDataSource(source: SiteLocalDataSourceImpl): SiteLocalDataSource
+
+    @Binds
+    abstract fun provideItemListRemoteDataSource(source: ItemListRemoteDataSourceImpl): ItemListRemoteDataSource
 }

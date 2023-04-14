@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ItemBackendResponse(
+    val id: String?,
     val title: String?,
     val condition: String?,
     @SerializedName("thumbnail") val imageUrl: String?,
