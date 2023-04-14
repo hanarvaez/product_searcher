@@ -4,7 +4,7 @@ import co.com.monkeymobile.product_searcher.presentation.ViewEvent
 
 interface ProductListViewEvent : ViewEvent {
 
-    object Initialize : ProductListViewEvent {
+    class Initialize(val siteId: String, val query: String) : ProductListViewEvent {
 
         override fun getName() = "ProductListViewEvent.Initialize"
     }
