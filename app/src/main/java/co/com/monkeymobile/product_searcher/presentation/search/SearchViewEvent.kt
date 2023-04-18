@@ -14,9 +14,4 @@ sealed class SearchViewEvent : ViewEvent {
 
         override fun getName() = "SearchViewEvent.SiteSelected"
     }
-
-    class SearchClicked(val query: String, val noSiteSelectedErrorMessage: String, val emptyQueryErrorMessage: String) : SearchViewEvent() {
-
-        override fun getName() = "SearchViewEvent.SearchClicked"
-    }
 }

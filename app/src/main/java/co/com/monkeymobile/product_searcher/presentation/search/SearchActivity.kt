@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
-import co.com.monkeymobile.product_searcher.R
 import co.com.monkeymobile.product_searcher.databinding.ActivitySearchBinding
+import co.com.monkeymobile.product_searcher.domain.model.Site
 import co.com.monkeymobile.product_searcher.presentation.BaseActivity
 import co.com.monkeymobile.product_searcher.presentation.product_list.ProductListActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,7 +36,6 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
             SearchViewState.Initial -> buildInitialState()
             SearchViewState.Loading -> buildLoadingState()
             is SearchViewState.Content -> buildContentState(state)
-            is SearchViewState.Search -> buildSearchState(state)
         }
     }
 
@@ -76,35 +75,7 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
             }
 
             binding.siteSelectorSpinner.adapter = spinnerAdapter
-            binding.siteSelectorSpinner.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val site = sites[position]
-                        dispatchEvent(SearchViewEvent.SiteSelected(site))
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>?) {
-                        val site = sites[0]
-                        dispatchEvent(SearchViewEvent.SiteSelected(site))
-                    }
-                }
-
-            binding.buttonSearch.setOnClickListener {
-                val query = binding.searchInput.text.toString()
-
-                dispatchEvent(
-                    SearchViewEvent.SearchClicked(
-                        query,
-                        getString(R.string.no_site_selected_error),
-                        getString(R.string.empty_query_error)
-                    )
-                )
-            }
+            configureEvents(sites)
         }
 
         with(binding) {
@@ -118,10 +89,30 @@ class SearchActivity : BaseActivity<SearchViewModel, SearchViewState, SearchView
         }
     }
 
-    private fun buildSearchState(state: SearchViewState.Search) {
-        val siteId = state.siteId
-        val query = state.query
+    private fun configureEvents(sites: List<Site>) {
+        binding.siteSelectorSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val site = sites[position]
+                    dispatchEvent(SearchViewEvent.SiteSelected(site))
+                }
 
-        startActivity(ProductListActivity.getIntent(this, siteId, query))
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    val site = sites[0]
+                    dispatchEvent(SearchViewEvent.SiteSelected(site))
+                }
+            }
+
+        binding.buttonSearch.setOnClickListener {
+            val siteId = viewModel.selectedSite?.id.orEmpty()
+            val query = binding.searchInput.text.toString()
+
+            startActivity(ProductListActivity.getIntent(this, siteId, query))
+        }
     }
 }
