@@ -6,5 +6,5 @@ data class Item (
     val condition: String,
     val imageUrl: String,
     val currency: String,
-    val price: Int
+    val price: Double
 )

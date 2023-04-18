@@ -12,7 +12,7 @@ data class ItemBackendResponse(
     val condition: String?,
     @SerializedName("thumbnail") val imageUrl: String?,
     @SerializedName("currency_id") val currency: String?,
-    val price: Int?
+    val price: Double?
 ) : Parcelable
 
 fun ItemBackendResponse.toItem() = if (
