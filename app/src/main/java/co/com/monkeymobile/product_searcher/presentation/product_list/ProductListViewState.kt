@@ -15,7 +15,7 @@ sealed class ProductListViewState : ViewState {
         override fun getName() = "ProductListViewState.Loading"
     }
 
-    class Content(val items: List<Item>) : ProductListViewState() {
+    class Content(val items: List<Item>, val isError: Boolean = false) : ProductListViewState() {
 
         override fun getName() = "ProductListViewState.Content"
     }

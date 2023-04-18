@@ -38,7 +38,7 @@ class ProductListViewModel @Inject constructor(
 
             is Result.Error -> {
                 toastMessage.postValue(result.toString())
-                setState(ProductListViewState.Content(emptyList()))
+                setState(ProductListViewState.Content(emptyList(), isError = true))
             }
         }
     }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
+import co.com.monkeymobile.product_searcher.R
 import co.com.monkeymobile.product_searcher.databinding.ActivityProductListBinding
 import co.com.monkeymobile.product_searcher.domain.model.Item
 import co.com.monkeymobile.product_searcher.presentation.BaseActivity
@@ -72,10 +73,17 @@ class ProductListActivity :
             Pair(View.GONE, View.VISIBLE)
         }
 
+        val errorText = if (state.isError) {
+            getString(R.string.internet_error_text)
+        } else {
+            getString(R.string.search_no_results_text)
+        }
+
         initializeAdapter()
 
         with(binding) {
             progressBar.visibility = View.GONE
+            errorMessage.text = errorText
             errorMessage.visibility = errorMessageVisibility
             itemsRecyclerView.visibility = recyclerVisibility
         }
