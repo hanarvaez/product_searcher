@@ -1,6 +1,5 @@
 package co.com.monkeymobile.product_searcher.presentation.search
 
-import androidx.lifecycle.MutableLiveData
 import co.com.monkeymobile.product_searcher.di.DefaultDispatcher
 import co.com.monkeymobile.product_searcher.domain.model.Site
 import co.com.monkeymobile.product_searcher.domain.use_case.GetSiteListUseCase
@@ -17,7 +16,8 @@ class SearchViewModel @Inject constructor(
     @DefaultDispatcher coroutineDispatcher: CoroutineDispatcher
 ) : BaseViewModel<SearchViewState, SearchViewEvent>(coroutineDispatcher) {
 
-    private val selectedSite = MutableLiveData<Site>()
+    var selectedSite: Site? = null
+        private set
 
     override fun getInitialState() = SearchViewState.Initial
 
@@ -25,7 +25,6 @@ class SearchViewModel @Inject constructor(
         when (event) {
             SearchViewEvent.Initialize -> initializeEvent()
             is SearchViewEvent.SiteSelected -> onSiteSelectedEvent(event)
-            is SearchViewEvent.SearchClicked -> onSearchClicked(event)
         }
     }
 
@@ -44,18 +43,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    private fun onSiteSelectedEvent(event: SearchViewEvent.SiteSelected) =
-        selectedSite.postValue(event.site)
-
-    private fun onSearchClicked(event: SearchViewEvent.SearchClicked) {
-        val query = event.query
-        val siteId = selectedSite.value?.id
-
-        when {
-            query.isBlank() -> toastMessage.postValue(event.emptyQueryErrorMessage)
-            siteId.isNullOrBlank() -> toastMessage.postValue(event.noSiteSelectedErrorMessage)
-            else -> setState(SearchViewState.Search(siteId, query))
-        }
+    private fun onSiteSelectedEvent(event: SearchViewEvent.SiteSelected) {
+        selectedSite = event.site
     }
-
 }
