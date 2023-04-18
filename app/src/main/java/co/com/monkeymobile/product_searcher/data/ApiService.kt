@@ -12,7 +12,7 @@ object ApiUrl {
     const val SITE_ID_PATH = "siteId"
 
     const val SITES_PARTICLE = "sites/"
-    const val SEARCH_PARTICLE = "{$SITE_ID_PATH}/search/"
+    const val SEARCH_PARTICLE = "sites/{$SITE_ID_PATH}/search/"
 
     const val Q_QUERY = "q"
 }
