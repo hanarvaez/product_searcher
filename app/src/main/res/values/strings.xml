@@ -4,6 +4,8 @@
     <string name="search_input_label_text">2. Please, type below the product you want to find</string>
     <string name="search_product_text">Search Product</string>
     <string name="internet_error_text">Ups! Seems something went wrong.\nPlease check your internet connection and try again</string>
+    <string name="search_no_results_text">There are no results for this search</string>
     <string name="no_site_selected_error">You must select a site!</string>
     <string name="empty_query_error">You must type a product for search!</string>
+    <string name="text_id_placeholder">Id: %s</string>
 </resources>

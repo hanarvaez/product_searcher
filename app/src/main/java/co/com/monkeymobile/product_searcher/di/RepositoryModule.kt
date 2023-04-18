@@ -1,6 +1,8 @@
 package co.com.monkeymobile.product_searcher.di
 
+import co.com.monkeymobile.product_searcher.data.repository.ItemListRepositoryImpl
 import co.com.monkeymobile.product_searcher.data.repository.SiteRepositoryImpl
+import co.com.monkeymobile.product_searcher.domain.repository.ItemListRepository
 import co.com.monkeymobile.product_searcher.domain.repository.SiteRepository
 import dagger.Binds
 import dagger.Module
@@ -13,4 +15,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindSiteRepository(siteRepositoryImpl: SiteRepositoryImpl): SiteRepository
+
+    @Binds
+    abstract fun bindItemListRepository(itemListRepositoryImpl: ItemListRepositoryImpl): ItemListRepository
 }
