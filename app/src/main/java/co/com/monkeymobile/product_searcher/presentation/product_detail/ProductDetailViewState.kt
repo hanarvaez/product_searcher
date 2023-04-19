@@ -10,7 +10,7 @@ sealed class ProductDetailViewState : ViewState {
         override fun getName() = "ProductDetailViewState.Initial"
     }
 
-    class Content(item: Item) : ProductDetailViewState() {
+    class Content(val item: Item) : ProductDetailViewState() {
 
         override fun getName() = "ProductDetailViewState.Content"
     }

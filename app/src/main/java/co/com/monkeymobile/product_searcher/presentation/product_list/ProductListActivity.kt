@@ -9,6 +9,7 @@ import co.com.monkeymobile.product_searcher.R
 import co.com.monkeymobile.product_searcher.databinding.ActivityProductListBinding
 import co.com.monkeymobile.product_searcher.domain.model.Item
 import co.com.monkeymobile.product_searcher.presentation.BaseActivity
+import co.com.monkeymobile.product_searcher.presentation.product_detail.ProductDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -92,7 +93,7 @@ class ProductListActivity :
     }
 
     override fun onItemClicked(item: Item) {
-
+        startActivity(ProductDetailActivity.getIntent(this, item))
     }
 
     private fun initializeAdapter() {

@@ -11,4 +11,5 @@
     <string name="product_not_found_text">Product not found.\nPlease try again</string>
     <string name="condition_text">Condition:</string>
     <string name="price_text">Price:</string>
+    <string name="price_placeholder">%s %s</string>
 </resources>
