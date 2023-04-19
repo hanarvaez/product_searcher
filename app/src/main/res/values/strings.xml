@@ -8,4 +8,7 @@
     <string name="no_site_selected_error">You must select a site!</string>
     <string name="empty_query_error">You must type a product for search!</string>
     <string name="text_id_placeholder">Id: %s</string>
+    <string name="product_not_found_text">Product not found.\nPlease try again</string>
+    <string name="condition_text">Condition:</string>
+    <string name="price_text">Price:</string>
 </resources>
